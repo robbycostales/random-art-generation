@@ -1,9 +1,10 @@
 from PIL import Image
 import turtle
 from random import randint
+
 wn = turtle.Screen()
 wn.colormode(255)
-im = Image.open("read_color_pallet.png")
+im = Image.open("cool_colors.png")
 im_size = im.size
 (xrange,yrange) = im_size
 
@@ -22,7 +23,7 @@ def parc_down_array(array):
     rgb_list = []
     for i in array:
         for rgb in i:
-            if rgb not in rgb_list and rgb != (255,255,255):
+            if rgb not in rgb_list:
                 rgb_list.append(rgb)
 
     return rgb_list
@@ -110,10 +111,10 @@ class Art:
 
     def draw_art(self):
         wn.tracer(100,0)
-        for i in range(75):
+        for i in range(500):
             num = randint(0,3)
-            size1 = randint(50,225)
-            size2 = randint(50,225)
+            size1 = randint(10,225)
+            size2 = randint(10,225)
             angle = randint(91,160)
             x_bound = randint(-(self.xbound//2),(self.xbound//2))
             y_bound = randint(-(self.ybound//2),(self.ybound//2))
@@ -132,11 +133,10 @@ class Art:
         print("done")
 
 
-art = Art(rgb_list,400,600)
+art = Art(rgb_list,500,700)
 
 
 art.draw_art()
-
 
 
 wn.mainloop()
