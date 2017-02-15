@@ -22,8 +22,9 @@ def parc_down_array(array):
     rgb_list = []
     for i in array:
         for rgb in i:
-            if rgb not in rgb_list:
+            if rgb not in rgb_list and rgb != (255,255,255):
                 rgb_list.append(rgb)
+
     return rgb_list
 rgb_list = parc_down_array(array_of_rgb(im, xrange, yrange))
 
@@ -36,6 +37,7 @@ class Art:
         self.color_list = color_pallet
         self.xbound = pic_size_x
         self.ybound = pic_size_y
+        self.mode = int(input("enter 1 for rectangular mode and 0 for circular mode.(in circle mdoe the pic_size_x is the radius y does not matter):   "))
 
     def draw_square(self,color,startx,starty,size):
         self.t.speed(0)
@@ -64,8 +66,9 @@ class Art:
             self.t.forward(size2)
         self.t.end_fill()
 
-    def draw_rumbus(self,color, startx, starty, size1,size2,angle):
+    def draw_rhombus(self, color, startx, starty, size1, size2, angle):
         self.t.hideturtle()
+        self.t.speed(0)
         self.t.penup()
         self.t.goto(startx,starty)
         self.t.pendown()
@@ -80,41 +83,57 @@ class Art:
         self.t.forward(size2)
         self.t.end_fill()
 
-    def clean_perimeter(self):
+    def clean_perimeter_rectangle(self):
         self.t.setheading(0)
-        self.t.pensize(400)
+        self.t.pensize(450)
         self.t.penup()
         self.t.speed(0)
-        self.t.goto(-((self.xbound//2)+200),-((self.ybound//2)+200))
+        self.t.goto(-((self.xbound//2)+225),-((self.ybound//2)+225))
         self.t.pendown()
         self.t.color((255,255,255))
         for i in range(2):
-            self.t.forward(self.xbound+400)
+            self.t.forward(self.xbound+450)
             self.t.right(-90)
-            self.t.forward(self.ybound+400)
+            self.t.forward(self.ybound+450)
             self.t.right(-90)
 
+    def clean_perimeter_circle(self):
+        self.t.setheading(0)
+        self.t.pensize(450)
+        self.t.penup()
+        self.t.speed(0)
+        self.t.goto(0,-(self.xbound+100))
+        self.t.pendown()
+        self.t.color((255,255,255))
+        self.t.circle(self.xbound+100)
+
+
     def draw_art(self):
-        for i in range(10):
-            for color in range(len(self.color_list)):
-                num = randint(0,3)
-                size1 = randint(50,150)
-                size2 = randint(50,150)
-                angle = randint(95,160)
-                x_bound = randint(-(self.xbound//2),(self.xbound//2))
-                y_bound = randint(-(self.ybound//2),(self.ybound//2))
-                if num == 0:
-                    self.draw_rumbus(self.color_list[color],x_bound,y_bound,size1,size2,angle)
-                if num == 1:
-                    self.draw_rectangle(self.color_list[color],x_bound,y_bound,size1,size2)
-                if num == 2:
-                    self.draw_square(self.color_list[color],x_bound,y_bound,size2)
-        self.clean_perimeter()
+        wn.tracer(100,0)
+        for i in range(75):
+            num = randint(0,3)
+            size1 = randint(50,225)
+            size2 = randint(50,225)
+            angle = randint(91,160)
+            x_bound = randint(-(self.xbound//2),(self.xbound//2))
+            y_bound = randint(-(self.ybound//2),(self.ybound//2))
+            color = randint(0,(len(self.color_list)-1))
+            if num == 0:
+                self.draw_rhombus(self.color_list[color], x_bound, y_bound, size1, size2, angle)
+            if num == 1:
+                self.draw_rectangle(self.color_list[color],x_bound,y_bound,size1,size2)
+            if num == 2:
+                self.draw_square(self.color_list[color],x_bound,y_bound,size2)
+        if self.mode == 0:
+            self.clean_perimeter_circle()
+        else:
+            self.clean_perimeter_rectangle()
+        wn.update()
         print("done")
 
 
-art = Art(rgb_list,400,500)
-# art.draw_rumbus(rgb_list[0],0,0,60,80,120)
+art = Art(rgb_list,400,600)
+
 
 art.draw_art()
 
