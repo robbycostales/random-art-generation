@@ -4,7 +4,7 @@ from random import randint
 
 wn = turtle.Screen()
 wn.colormode(255)
-im = Image.open("noice.png")
+im = Image.open("more_colors.png")
 im_size = im.size
 (xrange,yrange) = im_size
 
@@ -64,9 +64,11 @@ class Art:
         self.t.pendown()
         self.t.begin_fill()
         for i in range(2):
+            self.t.right(90)
             self.t.forward(size1)
             self.t.right(90)
             self.t.forward(size2)
+
         self.t.end_fill()
 
     def draw_rhombus(self, color, startx, starty, size1, size2, angle):
@@ -134,7 +136,7 @@ class Art:
         print("done")
 
 
-art = Art(rgb_list,500,700)
+art = Art(rgb_list,500,500)
 
 
 art.draw_art()
