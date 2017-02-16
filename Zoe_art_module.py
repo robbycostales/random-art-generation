@@ -4,7 +4,8 @@ from random import randint
 
 wn = turtle.Screen()
 wn.colormode(255)
-im = Image.open("more_colors.png")
+wn.screensize(800, 800)
+im = Image.open("folder_of_color/read_color_pallet.png")
 im_size = im.size
 (xrange,yrange) = im_size
 
@@ -37,14 +38,12 @@ rgb_list = parse_down_array(array_of_rgb(im, xrange, yrange))
 # this is my class art which takes care of drawing the art.
 
 class Art:
-    def __init__(self, color_pallet, pic_size_x, pic_size_y):
+    def __init__(self, color_pallet, pic_size_x, pic_size_y,mode):
         self.t = turtle.Turtle()
         self.color_list = color_pallet
         self.xbound = pic_size_x
         self.ybound = pic_size_y
-        self.mode = int(input
-        ("enter 1 for rectangular mode and 0 for circular mode."""
-            "(in circle mode the pic_size_x is the radius y does not matter):   "))
+        self.mode = mode
 
     def draw_square(self, color, startx, starty, size):
         self.t.speed(0)
@@ -117,7 +116,7 @@ class Art:
         self.t.circle(self.xbound+100)
 
     def draw_art(self):
-        wn.tracer(1000,0)
+        wn.tracer(100000,0)
         for i in range(500):
             num = randint(0,3)
             size1 = randint(10,225)
@@ -137,13 +136,44 @@ class Art:
         else:
             self.clean_perimeter_rectangle()
         wn.update()
-        print("done")
 
 
-art = Art(rgb_list,500,500)
+art1 = Art(rgb_list,500,700,1)
+art2 = Art(rgb_list, 500, 600,0)
+
+def draw_art2():
+    art1.t.reset()
+    art1.t.hideturtle()
+    art1.draw_art()
+    
+
+def draw_art1():
+    art2.t.reset()
+    art2.t.hideturtle()
+    art2.draw_art()
 
 
-art.draw_art()
+
+wn.onkeypress(draw_art1, key='o')
+wn.onkeypress(draw_art2, key = "r")
+wn.onkeypress(exit, key = "Escape")
+wn.listen()
+
 
 
 wn.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
