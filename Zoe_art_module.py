@@ -34,7 +34,7 @@ def parse_down_array(array):
 rgb_list = parse_down_array(array_of_rgb(im, xrange, yrange))
 
 
-# this is my class art wbich takes care of drawing the art.
+# this is my class art which takes care of drawing the art.
 
 class Art:
     def __init__(self, color_pallet, pic_size_x, pic_size_y):
