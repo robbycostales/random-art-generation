@@ -8,6 +8,8 @@ im = Image.open("more_colors.png")
 im_size = im.size
 (xrange,yrange) = im_size
 
+# this creates an array of rgb values obtained by reading every 100 pixles/
+
 def array_of_rgb(im, xrange, yrange):
     rgb = []
     pix = im.load()
@@ -18,6 +20,8 @@ def array_of_rgb(im, xrange, yrange):
         rgb.append(rgb1)
     return rgb
 
+# this parses down the array to a list with around one of each color. 
+# I use this list as my color pallet.
 
 def parse_down_array(array):
     rgb_list = []
@@ -30,7 +34,7 @@ def parse_down_array(array):
 rgb_list = parse_down_array(array_of_rgb(im, xrange, yrange))
 
 
-
+# this is my class art wbich takes care of drawing the art.
 
 class Art:
     def __init__(self, color_pallet, pic_size_x, pic_size_y):
