@@ -2,10 +2,12 @@ from PIL import Image
 import turtle
 from random import randint
 
+# press o for circle and r for rectangle. Also press escape to exit.
+
 wn = turtle.Screen()
 wn.colormode(255)
-wn.screensize(800, 800)
-im = Image.open("folder_of_color/read_color_pallet.png")
+#wn.screensize(800, 800)
+im = Image.open("folder_of_color/pollock.png")
 im_size = im.size
 (xrange,yrange) = im_size
 
@@ -110,56 +112,186 @@ class Art:
         self.t.pensize(450)
         self.t.penup()
         self.t.speed(0)
-        self.t.goto(0,-(self.xbound+100))
-        self.t.pendown()
-        self.t.color((255,255,255))
-        self.t.circle(self.xbound+100)
+        if self.mode[1] == 0:
+            self.t.goto(0,-(600))
+            self.t.pendown()
+            self.t.color((255,255,255))
+            self.t.circle(600)
+        else:
+            self.t.goto(0,-(self.xbound+100))
+            self.t.pendown()
+            self.t.color((255,255,255))
+            self.t.circle(self.xbound+100)
+
+
+        
 
     def draw_art(self):
-        wn.tracer(100000,0)
-        for i in range(500):
-            num = randint(0,3)
-            size1 = randint(10,225)
-            size2 = randint(10,225)
-            angle = randint(91,160)
-            x_bound = randint(-(self.xbound//2),(self.xbound//2))
-            y_bound = randint(-(self.ybound//2),(self.ybound//2))
-            color = randint(0,(len(self.color_list)-1))
-            if num == 0:
+        wn.tracer(0,0)
+        if self.mode[1] == 2:
+            for i in range(200):
+                num = randint(0,3)
+                size1 = randint(10,225)
+                size2 = randint(10,225)
+                angle = randint(91,160)
+                x_bound = randint(-(self.xbound//2),(self.xbound//2))
+                y_bound = randint(-(self.ybound//2),(self.ybound//2))
+                color = randint(0,(len(self.color_list)-1))
+                if num == 0:
+                    self.draw_rhombus(self.color_list[color], x_bound, y_bound, size1, size2, angle)
+                if num == 1:
+                    self.draw_rectangle(self.color_list[color], x_bound, y_bound, size1, size2)
+                if num == 2:
+                    self.draw_square(self.color_list[color], x_bound, y_bound,size2)
+        elif self.mode[1] == 1:
+            for i in range(200):
+                size1 = randint(10,225)
+                size2 = randint(10,225)
+                angle = randint(91,160)
+                x_bound = randint(-(self.xbound//2),(self.xbound//2))
+                y_bound = randint(-(self.ybound//2),(self.ybound//2))
+                color = randint(0,(len(self.color_list)-1))
                 self.draw_rhombus(self.color_list[color], x_bound, y_bound, size1, size2, angle)
-            if num == 1:
+
+        elif self.mode[1] ==0:
+            for i in range(200):
+                size1 = randint(10,225)
+                size2 = randint(10,225)
+                angle = randint(91,160)
+                x_bound = randint(-(self.xbound//2),(self.xbound//2))
+                y_bound = randint(-(self.ybound//2),(self.ybound//2))
+                color = randint(0,(len(self.color_list)-1))
                 self.draw_rectangle(self.color_list[color], x_bound, y_bound, size1, size2)
-            if num == 2:
-                self.draw_square(self.color_list[color], x_bound, y_bound,size2)
-        if self.mode == 0:
+
+        if self.mode[0] == 0:
             self.clean_perimeter_circle()
         else:
             self.clean_perimeter_rectangle()
         wn.update()
 
 
-art1 = Art(rgb_list,500,700,1)
-art2 = Art(rgb_list, 500, 600,0)
+art1 = Art(rgb_list, 500,700, (1,2))
+art2 = Art(rgb_list, 500, 600, (0,2))
+art3 = Art(rgb_list, 500, 700, (1,1))
+art4 = Art(rgb_list, 500, 600, (0,1))
+art5 = Art(rgb_list, 500, 700, (1,0))
+art6 = Art(rgb_list, 800, 800, (0,0))
+
+def draw_art1():
+    art1.t.reset()
+    art2.t.reset()
+    art3.t.reset()
+    art4.t.reset()
+    art5.t.reset()
+    art6.t.reset()
+    art1.t.hideturtle()
+    art2.t.hideturtle()
+    art3.t.hideturtle()
+    art4.t.hideturtle()
+    art5.t.hideturtle()
+    art6.t.hideturtle()
+    
+    art1.draw_art()
+
 
 def draw_art2():
     art1.t.reset()
-    art1.t.hideturtle()
-    art1.draw_art()
-    
-
-def draw_art1():
     art2.t.reset()
+    art3.t.reset()
+    art4.t.reset()
+    art5.t.reset()
+    art6.t.reset()
+    art1.t.hideturtle()
     art2.t.hideturtle()
+    art3.t.hideturtle()
+    art4.t.hideturtle()
+    art5.t.hideturtle()
+    art6.t.hideturtle()
+    
     art2.draw_art()
 
+def draw_art3():
+    art1.t.reset()
+    art2.t.reset()
+    art3.t.reset()
+    art4.t.reset()
+    art5.t.reset()
+    art6.t.reset()
+    art1.t.hideturtle()
+    art2.t.hideturtle()
+    art3.t.hideturtle()
+    art4.t.hideturtle()
+    art5.t.hideturtle()
+    art6.t.hideturtle()
+    
+    art3.draw_art()
+def draw_art4():
+    art1.t.reset()
+    art2.t.reset()
+    art3.t.reset()
+    art4.t.reset()
+    art5.t.reset()
+    art6.t.reset()
+    art1.t.hideturtle()
+    art2.t.hideturtle()
+    art3.t.hideturtle()
+    art4.t.hideturtle()
+    art5.t.hideturtle()
+    art6.t.hideturtle()
+
+    art4.draw_art()
+def draw_art5():
+    art1.t.reset()
+    art2.t.reset()
+    art3.t.reset()
+    art4.t.reset()
+    art5.t.reset()
+    art6.t.reset()
+    art1.t.hideturtle()
+    art2.t.hideturtle()
+    art3.t.hideturtle()
+    art4.t.hideturtle()
+    art5.t.hideturtle()
+    art6.t.hideturtle()
+
+    art5.draw_art()
+def draw_art6():
+    art1.t.reset()
+    art2.t.reset()
+    art3.t.reset()
+    art4.t.reset()
+    art5.t.reset()
+    art6.t.reset()
+    art1.t.hideturtle()
+    art2.t.hideturtle()
+    art3.t.hideturtle()
+    art4.t.hideturtle()
+    art5.t.hideturtle()
+    art6.t.hideturtle()
+
+    art6.draw_art()
+
+    
+
+def run_art_generation():
+    # art1.t.hideturtle()
+    # art1.t.goto(-60,0)
+    art1.t.write(
+        "Press 1-2 for all shapes. 3-4 for rumbuses. 5-6 for rectangles."+
+        " Even numbers pictures are rectanglular, odd numbers pictures are circular! (esc exits)",
+        align="center",font=("Arial", 15, "normal"))
+
+    wn.onkeypress(draw_art1, key='1')
+    wn.onkeypress(draw_art2, key = "2")
+    wn.onkeypress(draw_art3, key = "3")
+    wn.onkeypress(draw_art4, key = "4")
+    wn.onkeypress(draw_art5, key = "5")
+    wn.onkeypress(draw_art6, key = "6")
+    wn.onkeypress(exit, key = "Escape")
+    wn.listen()
 
 
-wn.onkeypress(draw_art1, key='o')
-wn.onkeypress(draw_art2, key = "r")
-wn.onkeypress(exit, key = "Escape")
-wn.listen()
-
-
+run_art_generation()
 
 wn.mainloop()
 
