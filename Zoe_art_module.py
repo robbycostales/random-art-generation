@@ -2,7 +2,6 @@ from PIL import Image
 import turtle
 from random import randint
 
-# press o for circle and r for rectangle. Also press escape to exit.
 
 wn = turtle.Screen()
 wn.colormode(255)
@@ -170,112 +169,52 @@ class Art:
         wn.update()
 
 
-art1 = Art(rgb_list, 500,700, (1,2))
-art2 = Art(rgb_list, 500, 600, (0,2))
-art3 = Art(rgb_list, 500, 700, (1,1))
-art4 = Art(rgb_list, 500, 600, (0,1))
-art5 = Art(rgb_list, 500, 700, (1,0))
-art6 = Art(rgb_list, 800, 800, (0,0))
+
+
+
+def reset_and_hide():
+    art1.t.reset()
+    art2.t.reset()
+    art3.t.reset()
+    art4.t.reset()
+    art5.t.reset()
+    art6.t.reset()
+    art1.t.hideturtle()
+    art2.t.hideturtle()
+    art3.t.hideturtle()
+    art4.t.hideturtle()
+    art5.t.hideturtle()
+    art6.t.hideturtle()
+
 
 def draw_art1():
-    art1.t.reset()
-    art2.t.reset()
-    art3.t.reset()
-    art4.t.reset()
-    art5.t.reset()
-    art6.t.reset()
-    art1.t.hideturtle()
-    art2.t.hideturtle()
-    art3.t.hideturtle()
-    art4.t.hideturtle()
-    art5.t.hideturtle()
-    art6.t.hideturtle()
-    
+    reset_and_hide()
     art1.draw_art()
 
-
 def draw_art2():
-    art1.t.reset()
-    art2.t.reset()
-    art3.t.reset()
-    art4.t.reset()
-    art5.t.reset()
-    art6.t.reset()
-    art1.t.hideturtle()
-    art2.t.hideturtle()
-    art3.t.hideturtle()
-    art4.t.hideturtle()
-    art5.t.hideturtle()
-    art6.t.hideturtle()
-    
+    reset_and_hide()
     art2.draw_art()
 
 def draw_art3():
-    art1.t.reset()
-    art2.t.reset()
-    art3.t.reset()
-    art4.t.reset()
-    art5.t.reset()
-    art6.t.reset()
-    art1.t.hideturtle()
-    art2.t.hideturtle()
-    art3.t.hideturtle()
-    art4.t.hideturtle()
-    art5.t.hideturtle()
-    art6.t.hideturtle()
-    
+    reset_and_hide()
     art3.draw_art()
+
 def draw_art4():
-    art1.t.reset()
-    art2.t.reset()
-    art3.t.reset()
-    art4.t.reset()
-    art5.t.reset()
-    art6.t.reset()
-    art1.t.hideturtle()
-    art2.t.hideturtle()
-    art3.t.hideturtle()
-    art4.t.hideturtle()
-    art5.t.hideturtle()
-    art6.t.hideturtle()
-
+    reset_and_hide()
     art4.draw_art()
+
 def draw_art5():
-    art1.t.reset()
-    art2.t.reset()
-    art3.t.reset()
-    art4.t.reset()
-    art5.t.reset()
-    art6.t.reset()
-    art1.t.hideturtle()
-    art2.t.hideturtle()
-    art3.t.hideturtle()
-    art4.t.hideturtle()
-    art5.t.hideturtle()
-    art6.t.hideturtle()
-
+    reset_and_hide()
     art5.draw_art()
+
 def draw_art6():
-    art1.t.reset()
-    art2.t.reset()
-    art3.t.reset()
-    art4.t.reset()
-    art5.t.reset()
-    art6.t.reset()
-    art1.t.hideturtle()
-    art2.t.hideturtle()
-    art3.t.hideturtle()
-    art4.t.hideturtle()
-    art5.t.hideturtle()
-    art6.t.hideturtle()
-
+    reset_and_hide()
     art6.draw_art()
-
+    
     
 
 def run_art_generation():
-    # art1.t.hideturtle()
-    # art1.t.goto(-60,0)
+    
     art1.t.write(
         "Press 1-2 for all shapes. 3-4 for rumbuses. 5-6 for rectangles."+
         " Even numbers pictures are rectanglular, odd numbers pictures are circular! (esc exits)",
@@ -289,11 +228,18 @@ def run_art_generation():
     wn.onkeypress(draw_art6, key = "6")
     wn.onkeypress(exit, key = "Escape")
     wn.listen()
+if __name__ == "__main__":
 
+    art1 = Art(rgb_list, 500,700, (1,2))
+    art2 = Art(rgb_list, 500, 600, (0,2))
+    art3 = Art(rgb_list, 500, 700, (1,1))
+    art4 = Art(rgb_list, 500, 600, (0,1))
+    art5 = Art(rgb_list, 500, 700, (1,0))
+    art6 = Art(rgb_list, 800, 800, (0,0))
 
-run_art_generation()
+    run_art_generation()
 
-wn.mainloop()
+    wn.mainloop()
 
 
 
