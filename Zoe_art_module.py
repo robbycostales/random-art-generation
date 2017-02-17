@@ -7,7 +7,7 @@ from random import randint
 wn = turtle.Screen()
 wn.colormode(255)
 #wn.screensize(800, 800)
-im = Image.open("folder_of_color/pollock.png")
+im = Image.open("folder_of_color/read_color_pallet.png")
 im_size = im.size
 (xrange,yrange) = im_size
 
