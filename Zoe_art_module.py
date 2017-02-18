@@ -220,7 +220,7 @@ def draw_art6():
 def save_art():
     infile = str(datetime.now())
     wn.getcanvas().postscript(file= infile+".ps")
-    outfile = "zoe_art_saves/"+infile + ".png"
+    outfile = "art_saves/"+infile + ".png"
 
     try:
         Image1.open(infile+".ps").save(outfile)
