@@ -1,12 +1,18 @@
-from PIL import Image
+from PIL import Image as Image1 
 import turtle
 from random import randint
+from tkinter import *
+import sys,os
+from datetime import datetime
+
 
 
 wn = turtle.Screen()
 wn.colormode(255)
-#wn.screensize(800, 800)
-im = Image.open("folder_of_color/read_color_pallet.png")
+
+
+
+im = Image1.open("folder_of_color/read_color_pallet.png")
 im_size = im.size
 (xrange,yrange) = im_size
 
@@ -211,14 +217,25 @@ def draw_art6():
     reset_and_hide()
     art6.draw_art()
     
-    
+def save_art():
+    infile = str(datetime.now())
+    wn.getcanvas().postscript(file= infile+".ps")
+    outfile = "zoe_art_saves/"+infile + ".png"
+
+    try:
+        Image1.open(infile+".ps").save(outfile)
+    except IOError:
+        print("cannot convert", infile)
+    os.remove(infile+".ps")
+
+
 
 def run_art_generation():
-    
     art1.t.write(
         "Press 1-2 for all shapes. 3-4 for rumbuses. 5-6 for rectangles."+
-        " Even numbers pictures are rectanglular, odd numbers pictures are circular! (esc exits)",
+        " Even numbered pictures are rectanglular, odd numbered pictures are circular! (esc exits) (s to save image)",
         align="center",font=("Arial", 15, "normal"))
+
 
     wn.onkeypress(draw_art1, key='1')
     wn.onkeypress(draw_art2, key = "2")
@@ -227,7 +244,10 @@ def run_art_generation():
     wn.onkeypress(draw_art5, key = "5")
     wn.onkeypress(draw_art6, key = "6")
     wn.onkeypress(exit, key = "Escape")
+    wn.onkeypress(save_art, key = "s")
     wn.listen()
+
+
 if __name__ == "__main__":
 
     art1 = Art(rgb_list, 500,700, (1,2))
