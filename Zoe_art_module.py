@@ -1,13 +1,16 @@
 from PIL import Image as Image1 
 import turtle
 from random import randint
-from tkinter import *
-import sys,os
+import os
 from datetime import datetime
+from canvasvg import saveall
+# from cairosvg import svg2png
+# # tkinter import *
 
 
 
 wn = turtle.Screen()
+wn.bgcolor("white")
 wn.colormode(255)
 
 
@@ -216,19 +219,37 @@ def draw_art5():
 def draw_art6():
     reset_and_hide()
     art6.draw_art()
-    
+
+def creat_html(filenames):
+    new_filename = filenames+".svg"
+    html_str =('<html><img=src"%s"></html>' % (new_filename,))
+
+
+    Html_file= open(filenames+".html","w")
+    Html_file.write(html_str)
+    Html_file.close()
+
+def date_time_to_string():
+    date_time = str(datetime.now())
+    print(len(date_time))
+    time_str = date_time.split(" ")
+    time_str = time_str[1]
+    time_str = time_str.split(".")
+    time_str = ":".join(time_str)
+    print(time_str)
+    return time_str
+
+
 def save_art():
-    infile = str(datetime.now())
-    wn.getcanvas().postscript(file= infile+".ps")
-    outfile = "art_saves/"+infile + ".png"
+    file_name = date_time_to_string()
+    file_name1 = str(file_name)
 
-    try:
-        Image1.open(infile+".ps").save(outfile)
-    except IOError:
-        print("cannot convert", infile)
-    os.remove(infile+".ps")
-
-
+    infile = "art_saves/"+file_name1
+    outfile = "art_saves/"+file_name1+".png"
+    
+    saveall(infile+".svg", wn.getcanvas(), items=None, margin=10, tounicode=None)
+    #creat_html("art_saves/"+file_name)
+   
 
 def run_art_generation():
     art1.t.write(
@@ -247,6 +268,8 @@ def run_art_generation():
     wn.onkeypress(save_art, key = "s")
     wn.listen()
 
+
+date_time_to_string()
 
 if __name__ == "__main__":
 
