@@ -6,7 +6,6 @@ from datetime import datetime
 from canvasvg import saveall
 
 
-
 # this creates a list of rgb values obtained by reading every 100 pixels/
 
 def array_of_rgb(im, xrange, yrange):
@@ -45,7 +44,7 @@ class Art:
         self.ybound = pic_size_y
         self.mode = mode
 
-        # this function draws a square with the color, size, and starting position (x,y) specified.
+    # this function draws a square with the color, size, and starting position (x,y) specified.
 
     def draw_square(self, color, startx, starty, size):
         self.t.speed(0)
@@ -60,7 +59,7 @@ class Art:
             self.t.right(90)
         self.t.end_fill()
 
-        # this function draws a rectangle with the color, size, and starting position (x,y) specified.
+    # this function draws a rectangle with the color, size, and starting position (x,y) specified.
 
     def draw_rectangle(self, color, startx, starty, size1, size2):
         self.t.speed(0)
@@ -78,8 +77,8 @@ class Art:
 
         self.t.end_fill()
 
-        # this function draws a rhombus with the color, size, angle,
-        #and starting position (x,y) specified.
+    # this function draws a rhombus with the color, size, angle,
+    #and starting position (x,y) specified.
 
     def draw_rhombus(self, color, startx, starty, size1, size2, angle):
         self.t.hideturtle()
@@ -98,8 +97,8 @@ class Art:
         self.t.forward(size2)
         self.t.end_fill()
 
-        # this function draws a very very large white rectangle around the generated shapes to have the
-        # final product look like a rectangle.
+    # this function draws a very very large white rectangle around the generated shapes to have the
+    # final product look like a rectangle.
 
 
     def clean_perimeter_rectangle(self):
@@ -116,8 +115,8 @@ class Art:
             self.t.forward(self.ybound+450)
             self.t.right(-90)
 
-        # this function draws a very very large white circle around the generated shapes to have the
-        # final product look like a circle.
+    # this function draws a very very large white circle around the generated shapes to have the
+    # final product look like a circle.
 
     def clean_perimeter_circle(self):
         self.t.setheading(0)
@@ -136,15 +135,15 @@ class Art:
             self.t.circle(self.xbound+100)
 
 
-        # this function actually draws the art.
+    # this function actually draws the art.
 
     def draw_art(self):
         wn.tracer(0,0)
         if self.mode[1] == 2: # mode[1] = 2 draw all shapes
-            for i in range(200):
+            for i in range(150):
                 num = randint(0,3)
-                size1 = randint(10,225)
-                size2 = randint(10,225)
+                size1 = randint(100,225)
+                size2 = randint(100,225)
                 angle = randint(91,160)
                 x_bound = randint(-(self.xbound//2),(self.xbound//2))
                 y_bound = randint(-(self.ybound//2),(self.ybound//2))
@@ -186,14 +185,15 @@ class Art:
 
 
 
-# this resets and hides all of the turtles so that there is no left over image from before.
-def reset_and_hide():
+# these functions reset and hide all of the turtles so that there are no left over images from before.
+def reset():
     art1.t.reset()
     art2.t.reset()
     art3.t.reset()
     art4.t.reset()
     art5.t.reset()
     art6.t.reset()
+def hide():
     art1.t.hideturtle()
     art2.t.hideturtle()
     art3.t.hideturtle()
@@ -201,29 +201,35 @@ def reset_and_hide():
     art5.t.hideturtle()
     art6.t.hideturtle()
 
-# these function make drawing art callable by the built in turtle function onkeypress.
+# these function make the draw_art method callable by the built in turtle function onkeypress.
 def draw_art1():
-    reset_and_hide()
+    reset()
+    hide()
     art1.draw_art()
 
 def draw_art2():
-    reset_and_hide()
+    reset()
+    hide()
     art2.draw_art()
 
 def draw_art3():
-    reset_and_hide()
+    reset()
+    hide()
     art3.draw_art()
 
 def draw_art4():
-    reset_and_hide()
+    reset()
+    hide()
     art4.draw_art()
 
 def draw_art5():
-    reset_and_hide()
+    reset()
+    hide()
     art5.draw_art()
 
 def draw_art6():
-    reset_and_hide()
+    reset()
+    hide()
     art6.draw_art()
 
 # this creates an html file which opens the .svg image. However most browsers can open .svg on their own.
@@ -281,7 +287,8 @@ def run_art_generation():
         "Press 1-2 for all shapes. 3-4 for rhombuses. 5-6 for rectangles."+
         " Even numbered pictures are rectangular, odd numbered pictures are circular! (esc exits) (s to save image)",
         align="center",font=("Arial", 15, "normal"))
-
+    
+    hide()
 
     wn.onkeypress(draw_art1, key='1') # draws all shapes in a rectangular frame
     wn.onkeypress(draw_art2, key = "2") # draws all shapes in a circular frame
@@ -294,7 +301,7 @@ def run_art_generation():
     wn.listen()
 
 if __name__ == "__main__":
-    # this is window set up.
+    # this is the window set up.
     wn = turtle.Screen()
     wn.bgcolor("white")
     wn.colormode(255)
