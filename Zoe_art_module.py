@@ -1,7 +1,6 @@
 from PIL import Image as Image1
 import turtle
 from random import randint
-import os
 from datetime import datetime
 from canvasvg import saveall
 
@@ -34,8 +33,9 @@ def parse_down_array(color_list):
 # this is my class art which takes care of drawing the art.
 
 class Art:
-    # color_pallet is the list of rgb values generated above. pic_size_x and pic_size_y are the sizes of the
-    # rectangular picture. The pic_size_x corresponds to the radius of the circle if the chosen shape is a circle.
+    # color_pallet is the list of rgb values generated above.
+    # pic_size_x and pic_size_y are the sizes of the rectangular picture.
+    # The pic_size_x corresponds to the radius of the circle in circle mode.
     # mode is for whether or not the picture is a circle or a rectangle and
     # which shapes are included. it is a tuple.
 
@@ -101,8 +101,8 @@ class Art:
         self.t.forward(size2)
         self.t.end_fill()
 
-    # this function draws a very very large white rectangle around the generated shapes to have the
-    # final product look like a rectangle.
+    # this function draws a very very large white rectangle around
+    # the generated shapes to have the final product look like a rectangle.
 
     def clean_perimeter_rectangle(self):
         self.t.setheading(0)
@@ -118,8 +118,8 @@ class Art:
             self.t.forward(self.ybound + 450)
             self.t.right(-90)
 
-    # this function draws a very very large white circle around the generated shapes to have the
-    # final product look like a circle.
+    # this function draws a very very large white circle around the generated
+    # shapes to have the final product look like a circle.
 
     def clean_perimeter_circle(self):
         self.t.setheading(0)
@@ -255,20 +255,20 @@ def draw_art6():
 def creat_html(filenames):
     new_filename = filenames + ".svg"
     html_str = '''
-	<!DOCTYPE html>
-	<html>
-	  
-	  <head>
-		<title>%s</title>
-	  </head>
+        <!DOCTYPE html>
+        <html>
 
-	  <body>
-		<img src="%s" alt="%s">
-	  </body>
+        <head>
+        <title>%s</title>
+        </head>
 
-	</html>
+        <body>
+        <img src="%s" alt="%s">
+        </body>
 
-	''' % ("Art", new_filename, "dank memes")
+        </html>
+
+        ''' % ("Art", new_filename, "dank memes")
 
     Html_file = open("art_saves/" + filenames + ".html", "w")
     Html_file.write(html_str)
@@ -287,8 +287,8 @@ def date_time_to_string():
     time_str = "_".join(time_str)
     return time_str
 
-# this function saves the art generated as a .svg and includes an html file that opens the corresponding
-# image.
+# this function saves the art generated as a .svg and includes
+# an html file that opens the corresponding image.
 
 
 def save_art():
@@ -296,7 +296,6 @@ def save_art():
     file_name1 = str(file_name)
 
     infile = "art_saves/" + file_name1
-    outfile = "art_saves/" + file_name1 + ".png"
 
     saveall(infile + ".svg", wn.getcanvas(),
             items=None, margin=10, tounicode=None)
@@ -308,8 +307,8 @@ def save_art():
 def run_art_generation():
     art1.t.write(
         "Press 1-2 for all shapes. 3-4 for rhombuses. 5-6 for rectangles." +
-        " Even numbered pictures are rectangular, odd numbered",
-        "pictures are circular! (esc exits) (s to save image)",
+        " Even numbered pictures are rectangular, odd numbered" +
+        " pictures are circular! (esc exits) (s to save image)",
         align="center", font=("Arial", 15, "normal"))
 
     hide()
@@ -339,6 +338,7 @@ def run_art_generation():
 
     wn.listen()
 
+
 if __name__ == "__main__":
     # this is the window set up.
     wn = turtle.Screen()
@@ -354,8 +354,8 @@ if __name__ == "__main__":
     firstpass_rgb = array_of_rgb(im, xrange, yrange)
     rgb_list = parse_down_array(firstpass_rgb)
 
-    # I create 6 different instances of my class for the 6 different ways I generate art.
-    #(Note how mode is different for each)
+    # I create 6 different instances of my class for the
+    # 6 different ways I generate art.(Note how mode is different for each)
     art1 = Art(rgb_list, 500, 700, (1, 2))
     art2 = Art(rgb_list, 500, 700, (0, 2))
     art3 = Art(rgb_list, 500, 700, (1, 1))
