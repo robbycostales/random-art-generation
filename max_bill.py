@@ -9,31 +9,32 @@ wn.tracer(0, 0)
 t1 = turtle.Turtle()
 t2 = turtle.Turtle()
 t3 = turtle.Turtle()
-t4 = turtle.Turtle()        # 1-4 are dark colored turtles
+t4 = turtle.Turtle() # 1-4 are dark colored turtles
 t5 = turtle.Turtle()
 t6 = turtle.Turtle()
 t7 = turtle.Turtle()
 t8 = turtle.Turtle()        # 5-8 are the matching bright colored turtles
 
+
 TList = [t1, t2, t3, t4, t5, t6, t7, t8]
 
-for i in [t1, t2, t3, t4, t5, t6, t7, t8]:
+for i in TList:
     i.ht()
     i.speed(0)
 
-bg = turtle.Turtle()    # bg color turtle
-bg.shape("square")
-bg.turtlesize(80)
-bg.ht()
-bg.penup()
-bg.speed(0)
+    bg = turtle.Turtle()    # bg color turtle
+    bg.shape("square")
+    bg.turtlesize(80)
+    bg.ht()
+    bg.penup()
+    bg.speed(0)
 
-fr = turtle.Turtle()      # framing turtle
-fr.shape("circle")
-fr.color("DarkGray")
-fr.penup()
-fr.ht()
-fr.speed(0)
+    fr = turtle.Turtle()      # framing turtle
+    fr.shape("circle")
+    fr.color("DarkGray")
+    fr.penup()
+    fr.ht()
+    fr.speed(0)
 
 
 def draw_rectangle(t, height, width):    # draws a rectangle at tip of turtle
@@ -56,11 +57,11 @@ def draw_rectangle(t, height, width):    # draws a rectangle at tip of turtle
 class MaxBill(object):
     def __init__(self):
         self.type = random.choice(["S45SmRect", "S45DiagRect", "TiltSquare"])
-        self.bright_c = random.sample(["yellow", "crimson", "lime", "coral", "DeepSkyBlue", "magenta", "white"], 4)
+        self.bright_c = random.sample(["yellow", "DarkRed", "LimeGreen", "coral", "DeepSkyBlue", "magenta", "white"], 4)
         random.shuffle(self.bright_c)
         self.dark_c = random.sample(["steel blue", "LimeGreen", "gold", "red", "DarkOrange", "purple", "black"], 4)
         random.shuffle(self.dark_c)
-        self.bg = ["yellow", "crimson", "lime", "coral", "DeepSkyBlue", "magenta", "steel blue",
+        self.bg = ["yellow", "DarkRed", "coral", "DeepSkyBlue", "magenta", "steel blue",
                                  "LimeGreen", "gold", "red", "DarkOrange", "purple"]
         random.shuffle(self.bg)
         self.b_w = random.choice(["black", "white"])
@@ -238,9 +239,11 @@ class MaxBill(object):
             fr.penup()
 
         wn.update()         # Updates drawing and waits 5 seconds
-        time.sleep(5)
+        time.sleep(3)
 
-for _ in range(10):
-    a = MaxBill()
-    a.create_painting()
+
+if __name__ == "__main__":
+    for _ in range(10):
+        a = MaxBill()
+        a.create_painting()
 

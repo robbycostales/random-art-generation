@@ -8,7 +8,7 @@ from canvasvg import saveall
 
 # this creates a list of rgb values obtained by reading every 100 pixels/
 
-def array_of_rgb(im, xrange, yrange):
+def list_of_rgb(im, xrange, yrange):
     rgb = []
     pix = im.load()
     for x in range(0, xrange, 100):
@@ -23,7 +23,7 @@ def array_of_rgb(im, xrange, yrange):
 # this parses down the array to a list with around one of each color.
 
 
-def parse_down_array(color_list):
+def parse_down_list(color_list):
     rgb_list = []
     for rgb in color_list:
         if rgb not in rgb_list:
@@ -340,30 +340,32 @@ def run_art_generation():
     wn.listen()
 
 
+
+# this is the window set up.
+wn = turtle.Screen()
+wn.bgcolor("white")
+wn.colormode(255)
+
+# reading image size for color pallet.
+im = Image1.open("folder_of_color/read_color_pallet.png")
+im_size = im.size
+(xrange, yrange) = im_size
+
+# creating color pallet.
+first_pass_rgb = list_of_rgb(im, xrange, yrange)
+rgb_list = parse_down_list(first_pass_rgb)
+
+# I create 6 different instances of my class for the
+# 6 different ways I generate art.(Note how mode is different for each)
+art1 = Art(rgb_list, 500, 700, (1, 2))
+art2 = Art(rgb_list, 500, 700, (0, 2))
+art3 = Art(rgb_list, 500, 700, (1, 1))
+art4 = Art(rgb_list, 500, 700, (0, 1))
+art5 = Art(rgb_list, 500, 700, (1, 0))
+art6 = Art(rgb_list, 800, 800, (0, 0))  # here the values are larger
+# because the rectangles were not fully filling up the circle.
+
 if __name__ == "__main__":
-    # this is the window set up.
-    wn = turtle.Screen()
-    wn.bgcolor("white")
-    wn.colormode(255)
-
-    # reading image size for color pallet.
-    im = Image1.open("folder_of_color/read_color_pallet.png")
-    im_size = im.size
-    (xrange, yrange) = im_size
-
-    # creating color pallet.
-    firstpass_rgb = array_of_rgb(im, xrange, yrange)
-    rgb_list = parse_down_array(firstpass_rgb)
-
-    # I create 6 different instances of my class for the
-    # 6 different ways I generate art.(Note how mode is different for each)
-    art1 = Art(rgb_list, 500, 700, (1, 2))
-    art2 = Art(rgb_list, 500, 700, (0, 2))
-    art3 = Art(rgb_list, 500, 700, (1, 1))
-    art4 = Art(rgb_list, 500, 700, (0, 1))
-    art5 = Art(rgb_list, 500, 700, (1, 0))
-    art6 = Art(rgb_list, 800, 800, (0, 0))  # here the values are larger
-    # because the rectangles were not fully filling up the circle.
 
     run_art_generation()
 
