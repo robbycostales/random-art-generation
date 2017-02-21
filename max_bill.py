@@ -145,6 +145,7 @@ class MaxBill(object):
                 t1.color(self.bg[1])
                 draw_rectangle(t1, c_size*2, c_size*2)
 
+            t2.penup()
             t2.setpos(0, 0)
             t2.setheading(90+angle)
             t2.color(self.bright_c[0])
@@ -152,11 +153,13 @@ class MaxBill(object):
             t2.right(180)
             draw_rectangle(t2, c_size * 2, big_slant_rect)
 
+            t3.penup()
             t3.setpos(0, -c_size-10)
             t3.setheading(90)
             t3.color(self.dark_c[0])
             draw_rectangle(t3, c_size * 3, no_slant_rect)
 
+            t4.penup()
             t4.setpos(0, 0)
             t4.setheading(90 + angle)
             t4.color(self.bright_c[1])
@@ -171,6 +174,25 @@ class MaxBill(object):
             bg.stamp()  # Creates background color from random choice of the self.bg list
             bg.ht()
             t1.color(self.dark_c[0])
+            t1.penup()
+            t1.setheading(random.randint(10, 340))
+            t1.backward(random.randint(-250, c_size*1.5))
+            draw_rectangle(t1, random.randint(c_size//1.5, int(c_size*1.8)), random.randint(c_size//1.5, int(c_size*1.8)))
+
+        elif self.type == "Checker":  # ## WORK IN PROGRESS ## #
+            if random.choice(["hor", "ver"]) == "hor":
+                t1.setpos(-(2**(1/2))*c_size/2, (2**(1/2)*3*c_size/8))
+                t2.setpos(-(2 ** (1 / 2)) * c_size / 2, (2 ** (1 / 2) * 3 * c_size / 8))
+                t3.setpos(-(2 ** (1 / 2)) * c_size / 2, (2 ** (1 / 2) * 3 * c_size / 8))
+                t4.setpos(-(2 ** (1 / 2)) * c_size / 2, (2 ** (1 / 2) * 3 * c_size / 8))
+
+            bg.st()
+            bg.color(self.bright_c[0])  # Sets bg color
+            bg.pendown()
+            bg.stamp()  # Creates background color from random choice of the self.bg list
+            bg.ht()
+            t1.color(self.dark_c[0])
+            t1.penup()
             t1.setheading(random.randint(10, 340))
             t1.backward(random.randint(-250, c_size*1.5))
             draw_rectangle(t1, random.randint(c_size//1.5, int(c_size*1.8)), random.randint(c_size//1.5, int(c_size*1.8)))
@@ -178,20 +200,42 @@ class MaxBill(object):
         else:
             print("type error")
 
-        fr.forward(c_size)
-        fr.left(135)
-        fr.pendown()
-        for i in range(4):
-            fr.forward(c_size*(2**(1/2)))
-            fr.left(90)
-        fr.penup()
-        fr.setpos(0, 0)
-        fr.setheading(45)
-        for i in range(4):
-            fr.forward(c_size/2*(2**(1/2)))
-            draw_rectangle(fr, 1200, 1200)
-            fr.backward(c_size/2*(2**(1/2)))
-            fr.left(90)
+        if self.type != "Checker":
+            fr.setheading(0)
+            fr.forward(c_size)
+            fr.left(135)
+            fr.pendown()
+            for i in range(4):
+                fr.forward(c_size*(2**(1/2)))
+                fr.left(90)
+            fr.penup()
+            fr.setpos(0, 0)
+            fr.setheading(45)
+            for i in range(4):
+                fr.forward(c_size/2*(2**(1/2)))
+                draw_rectangle(fr, 1200, 1200)
+                fr.backward(c_size/2*(2**(1/2)))
+                fr.left(90)
+            fr.penup()
+
+        else:
+            fr.setheading(0)
+            fr.right(45)
+            fr.forward(c_size)
+            fr.left(135)
+            fr.pendown()
+            for i in range(4):
+                fr.forward(c_size*(2**(1/2)))
+                fr.left(90)
+            fr.penup()
+            fr.setpos(0, 0)
+            fr.setheading(45)
+            for i in range(4):
+                fr.forward(c_size/2*(2**(1/2)))
+                draw_rectangle(fr, 1200, 1200)
+                fr.backward(c_size/2*(2**(1/2)))
+                fr.left(90)
+            fr.penup()
 
         wn.update()         # Updates drawing and waits 5 seconds
         time.sleep(5)
