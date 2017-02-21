@@ -13,7 +13,7 @@ class Recta:
 
 
     def randomRects(self,canvas):
-        # for i in range(20):
+        for i in range(20):
             color = ['medium violet red', 'DarkGoldenrod2', 'black']
             root["bg"] = "grey"
             for i in range (58):
