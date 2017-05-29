@@ -1,9 +1,12 @@
-# project_3
+# Random Art Generation
 
-Project 3 for CMPT 100
+Bard College at Simon's Rock
+CMPT 200
+Project 3
 
-Robby, Zoe, Naol
+Robby Costales
+Zoe Offermann
+Naol Negassa
 
-This project is avaliable through git via:
-- SSH: git@src-code.simons-rock.edu:rcostales15/project_3.git
-- HTTPS: https://src-code.simons-rock.edu/git/rcostales15/project_3.git
+Generate random pieces of artwork based on a certain artist's past works.
+While we manually coded it to fit certain styles we recognized, we tried to generate as much randomness as possible in the process.
